@@ -57,7 +57,7 @@ end
 
 defmodule IcebreakerServer do
   def start do
-    ServerProcess.start(TodoServer)
+    ServerProcess.start(IcebreakerServer)
   end
 
   def put(pid, entry) do
@@ -107,7 +107,7 @@ defmodule IcebreakerList do
     %IcebreakerList{icebreaker_list | entries: new_entries, auto_id: icebreaker_list.auto_id + 1}
   end
 
-  def entries(icebreaker_list, date) do
+  def entries(icebreaker_list, question) do
     icebreaker_list.entries
     |> Stream.filter(fn {_, entry} -> entry.question == question end)
     |> Enum.map(fn {_, entry} -> entry end)
